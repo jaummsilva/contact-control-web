@@ -1,12 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ContatosMVC.Models;
+using ContatosMVC.Repositorio;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ContatosMVC.Controllers
 {
     public class ContatoController : Controller
     {
+        private readonly IContatoRepositorio _contatoRepositorio;
+        public ContatoController(IContatoRepositorio contatoRepositorio)
+        {
+            _contatoRepositorio = contatoRepositorio;
+
+        }
         public IActionResult Index()
         {
-            return View();
+            var contatos = _contatoRepositorio.BuscarTodos();
+            return View(contatos);
         }
         public IActionResult Criar()
         {
@@ -19,6 +28,12 @@ namespace ContatosMVC.Controllers
         public IActionResult DeletarConfirmacao()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult Criar(Contato contato)
+        {
+            _contatoRepositorio.Adicionar(contato);
+            return RedirectToAction("Index");
         }
 
 

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Contato>
+@{
     ViewData["Title"] = "Listagem de Contatos";
 
 }
@@ -19,30 +20,24 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>f</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <a role="button" asp-controller="Contato" asp-action="Editar" class="btn btn-primary">Editar</a>
-                        <a role="button" asp-controller="Contato" asp-action="DeletarConfirmacao" class="btn btn-danger">Deletar</a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>f</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>f</td>
-            </tr>
+            @if(Model != null  && Model.Any())
+            {
+                foreach (var contato in Model)
+                {
+                    <tr>
+                        <th scope="row">@contato.Id</th>
+                        <td>@contato.Nome</td>
+                        <td>@contato.Email</td>
+                        <td>@contato.Celular</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" asp-route-id="@contato.Id" asp-controller="Contato" asp-action="Editar" class="btn btn-primary">Editar</a>
+                                <a role="button" asp-route-id="@contato.Id" asp-controller="Contato" asp-action="DeletarConfirmacao" class="btn btn-danger">Deletar</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
         </tbody>
     </table>
 
