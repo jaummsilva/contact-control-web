@@ -1,4 +1,5 @@
-﻿using ContatosMVC.Models;
+﻿using ContatosMVC.Helpers;
+using ContatosMVC.Models;
 using ContatosMVC.Repositorio;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,16 +9,29 @@ namespace ContatosMVC.Controllers
     public class LoginController : Controller
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
+        private readonly ISessao _sessao;
         
 
-        public LoginController(IUsuarioRepositorio usuarioRepositorio)
+        public LoginController(IUsuarioRepositorio usuarioRepositorio,ISessao sessao)
         {
             _usuarioRepositorio = usuarioRepositorio;
+            _sessao = sessao;
+
         }
            
         public IActionResult Index()
         {
+            // se o usuario estiver logado redirecionar para a Home //
+
+            if (_sessao.BuscarSessaoUsuario() != null) return RedirectToAction("Index", "Home");
             return View();
+        }
+
+        public IActionResult Sair()
+        {
+            _sessao.RemoverSessaoUsuario();
+
+            return RedirectToAction("Index", "Login");
         }
         [HttpPost]
         public IActionResult Entrar(Login loginModel)
@@ -31,8 +45,10 @@ namespace ContatosMVC.Controllers
                     {
                         if(usuario.SenhaValida(loginModel.Senha))
                         {
+                            _sessao.CriarSessaoUsuario(usuario);
                             return RedirectToAction("Index","Home");
                         }   
+
                         TempData["MensagemErro"] = "Senha inválida. Tente novamente";
 
                     }
