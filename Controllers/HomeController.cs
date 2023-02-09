@@ -1,9 +1,11 @@
-﻿using ContatosMVC.Models;
+﻿using ContatosMVC.Filters;
+using ContatosMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace ContatosMVC.Controllers
 {
+    [PaginaUsuarioLogado]
     public class HomeController : Controller
     {
         public IActionResult Index()

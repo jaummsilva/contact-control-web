@@ -54,7 +54,7 @@ namespace ContatosMVC.Controllers
                     }
                     TempData["MensagemErro"] = "Usuario e/ou senha inválido(s). Tente novamente";
                 }
-                return View("Home","Index");
+                return View("Index");
             }
             catch (Exception erro)
             {

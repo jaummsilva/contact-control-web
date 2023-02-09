@@ -1,9 +1,11 @@
-﻿using ContatosMVC.Models;
+﻿using ContatosMVC.Filters;
+using ContatosMVC.Models;
 using ContatosMVC.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContatosMVC.Controllers
 {
+    [PaginaUsuarioLogado]
     public class ContatoController : Controller
     {
         private readonly IContatoRepositorio _contatoRepositorio;
