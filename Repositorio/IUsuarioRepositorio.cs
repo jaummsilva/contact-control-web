@@ -4,6 +4,7 @@ namespace ContatosMVC.Repositorio
 {
     public interface IUsuarioRepositorio
     {
+        Usuario BuscarPorEmailLogin(string email ,string login);
         Usuario BuscarPorLogin(string login);
         List<Usuario> BuscarTodos();
         Usuario ListarPorId(int id);

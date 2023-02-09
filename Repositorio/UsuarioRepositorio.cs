@@ -1,5 +1,6 @@
 ﻿using ContatosMVC.Data;
 using ContatosMVC.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContatosMVC.Repositorio
 {
@@ -59,6 +60,11 @@ namespace ContatosMVC.Repositorio
         public Usuario BuscarPorLogin(string login)
         {
             return _bancoContext.Usuarios.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
+        }
+
+        public Usuario BuscarPorEmailLogin(string email, string login)
+        {
+            return _bancoContext.Usuarios.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper() && x.Login.ToUpper() == login.ToUpper());
         }
     }
 }
