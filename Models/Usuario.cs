@@ -38,5 +38,9 @@ namespace ContatosMVC.Models
             Senha = novaSenha.GerarHash();
             return novaSenha;
         }
+        public void setNovaSenhaHash(string novaSenha)
+        {
+            Senha = novaSenha.GerarHash();
+        }
     }
 }

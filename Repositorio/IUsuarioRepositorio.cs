@@ -11,6 +11,8 @@ namespace ContatosMVC.Repositorio
         Usuario Adicionar(Usuario usuario);
         Usuario Atualizar(Usuario usuario);
 
+        Usuario AlterarSenha(AlterarSenha alterarSenhaModel);
+
         bool Deletar(int id);
     }
 }

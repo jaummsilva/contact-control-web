@@ -39,9 +39,7 @@ namespace ContatosMVC.Controllers
                     TempData["MensagemSucesso"] = "Usuario Cadastrado com sucesso";
                     return RedirectToAction("Index");
                 }
-
                 return View(usuario);
-
             }
             catch (Exception erro)
             {
@@ -100,7 +98,6 @@ namespace ContatosMVC.Controllers
                     TempData["MensagemErro"] = "Ocorreu um erro ao excluir o usuario";
                 }
                 return RedirectToAction("Index");
-
             }
             catch (Exception erro)
             {
