@@ -1,4 +1,5 @@
 ﻿using ContatosMVC.Filters;
+using ContatosMVC.Helpers;
 using ContatosMVC.Models;
 using ContatosMVC.Repositorio;
 using Microsoft.AspNetCore.Mvc;
@@ -9,14 +10,17 @@ namespace ContatosMVC.Controllers
     public class ContatoController : Controller
     {
         private readonly IContatoRepositorio _contatoRepositorio;
-        public ContatoController(IContatoRepositorio contatoRepositorio)
+        private readonly ISessao _sessao;
+        public ContatoController(IContatoRepositorio contatoRepositorio, ISessao sessao)
         {
             _contatoRepositorio = contatoRepositorio;
+            _sessao = sessao;
 
         }
         public IActionResult Index()
         {
-            var contatos = _contatoRepositorio.BuscarTodos();
+            Usuario usuarioLogado = _sessao.BuscarSessaoUsuario();
+            List<Contato> contatos = _contatoRepositorio.BuscarTodos(usuarioLogado.Id);
             return View(contatos);
         }
         public IActionResult Criar()
@@ -35,12 +39,14 @@ namespace ContatosMVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _contatoRepositorio.Adicionar(contato);
+                    Usuario usuarioLogado = _sessao.BuscarSessaoUsuario();
+                    contato.UsuarioId = usuarioLogado.Id;
+                    contato = _contatoRepositorio.Adicionar(contato);
                     TempData["MensagemSucesso"] = "Contato Cadastrado com sucesso";
                     return RedirectToAction("Index");
                 }
 
-                return View(contato);
+                return View("Index",contato);
 
             }
             catch (Exception erro)
@@ -61,6 +67,8 @@ namespace ContatosMVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    Usuario usuarioLogado = _sessao.BuscarSessaoUsuario();
+                    contato.UsuarioId = usuarioLogado.Id;
                     _contatoRepositorio.Atualizar(contato);
                     TempData["MensagemSucesso"] = "Contato alterado com sucesso";
                     return RedirectToAction("Index");
