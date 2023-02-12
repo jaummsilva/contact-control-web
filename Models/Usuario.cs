@@ -24,7 +24,7 @@ namespace ContatosMVC.Models
         public DateTime DataCadastro  { get; set; }
         public DateTime? DataAlteracao { get; set; }
 
-        public virtual List<Contato> Contatos { get; set; }
+        public virtual List<Contato>? Contatos { get; set; }
 
         public bool SenhaValida(string senha)
         {
