@@ -49,7 +49,9 @@ namespace ContatosMVC.Repositorio
         }
         public List<Usuario> BuscarTodos()
         {
-            return _bancoContext.Usuarios.ToList();
+            return _bancoContext.Usuarios
+                .Include(x => x.Contatos)
+                .ToList();
         }
 
         public Usuario ListarPorId(int id)
