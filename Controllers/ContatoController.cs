@@ -20,8 +20,18 @@ namespace ContatosMVC.Controllers
         public IActionResult Index()
         {
             Usuario usuarioLogado = _sessao.BuscarSessaoUsuario();
-            List<Contato> contatos = _contatoRepositorio.BuscarTodos(usuarioLogado.Id);
-            return View(contatos);
+            if(usuarioLogado.Perfil == Enums.PerfilEnum.Padrao)
+            {
+                List<Contato> contatos = _contatoRepositorio.BuscarTodos(usuarioLogado.Id);
+                ViewData["Title"] = "Meus Contatos";
+                return View(contatos);
+            }
+            else
+            {
+                List<Contato> contatosAdmin = _contatoRepositorio.BuscarTodosAdmin().ToList();
+                ViewData["Title"] = "Todos os Contatos";
+                return View(contatosAdmin);
+            }
         }
         public IActionResult Criar()
         {

@@ -1,6 +1,5 @@
 ﻿@model List<Contato>
 @{
-    ViewData["Title"] = "Listagem de Contatos";
     Layout = "_Layout";
 
 }
@@ -24,7 +23,7 @@
         </div>  
     } <br />
 
-    <h1 class="display-4"> Listagem de Contatos</h1> <br /><br />
+    <h1 class="display-4">@ViewData["Title"]</h1> <br /><br />
 
     <table class="table" id="table-contatos">
         <thead>
@@ -46,7 +45,7 @@
                         <td>@contato.Nome</td>
                         <td>@contato.Email</td>
                         <td>@contato.Celular</td>
-                        <td>
+                        <td @contato.Usuario.Perfil == "Admin">
                             <div class="btn-group" role="group">
                                 <a role="button" asp-route-id="@contato.Id" asp-controller="Contato" asp-action="Editar" class="btn btn-primary">Editar</a>
                                 <a role="button" asp-route-id="@contato.Id" asp-controller="Contato" asp-action="DeletarConfirmacao" class="btn btn-danger">Deletar</a>

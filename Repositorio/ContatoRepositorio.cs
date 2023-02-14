@@ -51,5 +51,10 @@ namespace ContatosMVC.Repositorio
         {
             return _bancoContext.Contatos.FirstOrDefault(x => x.Id == id);
         }
+
+        public List<Contato> BuscarTodosAdmin()
+        {
+            return _bancoContext.Contatos.ToList();
+        }
     }
 }
