@@ -32,12 +32,40 @@ namespace ContatosMVC.Controllers
             return View();
         }
 
+        public IActionResult CriarContaPage()
+        {
+            return View();
+        }
+
         public IActionResult Sair()
         {
             _sessao.RemoverSessaoUsuario();
 
             return RedirectToAction("Index", "Login");
         }
+
+        [HttpPost]
+        public IActionResult CriarContaPadrao(Usuario usuario)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _usuarioRepositorio.Adicionar(usuario);
+                    TempData["MensagemSucesso"] = "Usuario Cadastrado com sucesso";
+                    return RedirectToAction("Index");
+                }
+                return View(usuario);
+            }
+            catch (Exception erro)
+            {
+                TempData["MensagemErro"] = $"Ops, não conseguimos cadastrar seu usuario, tente novamente. Detalhe do erro : {erro.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+
+
+
         [HttpPost]
         public IActionResult Entrar(Login loginModel)
         {

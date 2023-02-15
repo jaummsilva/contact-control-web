@@ -19,7 +19,6 @@ namespace ContatosMVC.Repositorio
             _bancoContext.SaveChanges();
             return usuario;
         }
-
         public Usuario Atualizar(Usuario usuario)
         {
             Usuario usuarioDB = ListarPorId(usuario.Id);

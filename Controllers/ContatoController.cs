@@ -30,6 +30,7 @@ namespace ContatosMVC.Controllers
             {
                 List<Contato> contatosAdmin = _contatoRepositorio.BuscarTodosAdmin().ToList();
                 ViewData["Title"] = "Todos os Contatos";
+                ViewData["Nome Usuario"] = usuarioLogado.Nome;
                 return View(contatosAdmin);
             }
         }

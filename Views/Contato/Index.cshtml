@@ -32,6 +32,7 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Email</th>
                 <th scope="col">Celular</th>
+                <th scope="col">Usuario Id</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -45,12 +46,14 @@
                         <td>@contato.Nome</td>
                         <td>@contato.Email</td>
                         <td>@contato.Celular</td>
-                        <td @contato.Usuario.Perfil == "Admin">
+                        <td>@contato.UsuarioId</td>
+                        <td>
                             <div class="btn-group" role="group">
                                 <a role="button" asp-route-id="@contato.Id" asp-controller="Contato" asp-action="Editar" class="btn btn-primary">Editar</a>
                                 <a role="button" asp-route-id="@contato.Id" asp-controller="Contato" asp-action="DeletarConfirmacao" class="btn btn-danger">Deletar</a>
                             </div>
                         </td>
+              
                     </tr>
                 }
             }
