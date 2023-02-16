@@ -5,6 +5,7 @@
 $(document).ready(function () {
     getDataTable('#table-contatos');
     getDataTable('#table-usuarios');
+    getDataTable('#table-tarefas');
 
     $('.btn-total-contatos').click(function () {
         var usuarioId = $(this).attr('usuario-id');

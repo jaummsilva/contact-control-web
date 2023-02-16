@@ -1,0 +1,68 @@
+﻿@model List<Tarefa>
+@{
+    Layout = "_Layout";
+
+}
+<div class="text-center">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" asp-controller="Tarefa" asp-action="Criar" role="button"> Adicionar nova tarefa</a>
+    </div> <br />
+
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm btn-close" arial-label="Close"></button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm btn-close" arial-label="Close"></button>
+            @TempData["MensagemErro"]
+        </div>
+    } <br />
+
+    <h1 class="display-4">@ViewData["Title"]</h1> <br /><br />
+
+    <table class="table" id="table-tarefas">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">descricao</th>
+                <th scope="col">DataFinal</th>
+                <th scope="col">TarefaEnum</th>
+                <th scope="col">Usuario Id</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody class="text-start">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var tarefa in Model)
+                {
+                    <tr>
+                        <th scope="row">@tarefa.Id</th>
+                        <td>@tarefa.descricao</td>
+                        <td>@tarefa.DataFinal</td>
+                        <td>@tarefa.TarefaEnum</td>
+                        <td>@tarefa.UsuarioId</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" asp-route-id="@tarefa.Id" asp-controller="Tarefa" asp-action="Editar" class="btn btn-primary">Editar</a>
+                                <a role="button" asp-route-id="@tarefa.Id" asp-controller="Tarefa" asp-action="DeletarConfirmacao" class="btn btn-danger">Deletar</a>
+                            </div>
+                        </td>
+
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr class="odd"><td valign="top" colspan="5"> Nenhum tarefa encontrada</td>  </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+

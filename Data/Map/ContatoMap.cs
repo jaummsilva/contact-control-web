@@ -11,5 +11,10 @@ namespace ContatosMVC.Data.Map
             builder.HasKey(x => x.Id);
             builder.HasOne(x => x.Usuario);
         }
+        public void Configure(EntityTypeBuilder<Tarefa> builder)
+        {
+            builder.HasKey(x => x.Id);
+            builder.HasOne(x => x.Usuario);
+        }
     }
 }

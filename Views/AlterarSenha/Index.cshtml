@@ -33,11 +33,13 @@
         <input type="text" asp-for="SenhaAtual" class="form-control" placeholder="Digite a senha atual do usuário">
         @Html.ValidationMessageFor(x => x.SenhaAtual)
     </div>
+    <br />
     <div class="form-group">
         <label for="senhaNova" class="form-label">Senha nova</label>
         <input type="text" asp-for="SenhaNova" class="form-control" placeholder="Digite a nova senha do usuário">
         @Html.ValidationMessageFor(x => x.SenhaNova)
     </div>
+    <br />
     <div class="form-group">
         <label for="confirmarSenhaNova" class="form-label">Confirmar Senha nova</label>
         <input type="text" asp-for="ConfirmarSenhaNova" class="form-control" placeholder="Confirme a nova senha do usuário">

@@ -12,7 +12,7 @@ namespace ContatosMVC.Repositorio
         }
         public Contato Adicionar(Contato contato)
         {
-           _bancoContext.Contatos.Add(contato);
+            _bancoContext.Contatos.Add(contato);
             _bancoContext.SaveChanges();
             return contato;
         }
@@ -20,13 +20,13 @@ namespace ContatosMVC.Repositorio
         public Contato Atualizar(Contato contato)
         {
             Contato contadoDB = ListarPorId(contato.Id);
-            
+
             if (contadoDB == null) throw new Exception("Houve um erro na atualização do contato");
-            
+
             contadoDB.Nome = contato.Nome;
             contadoDB.Email = contato.Email;
             contadoDB.Celular = contato.Celular;
-            
+
             _bancoContext.Update(contadoDB);
             _bancoContext.SaveChanges();
 
