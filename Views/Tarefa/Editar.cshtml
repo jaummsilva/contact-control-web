@@ -1,5 +1,41 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using ContatosMVC.Enums;
+@model Tarefa
 @{
+    ViewData["Title"] = "Editar tarefa";
+    Layout = "_Layout";
 }
+
+<div class="text-center">
+    <h1 class="display-4"> Editar tarefa</h1><br />
+</div>
+<br />
+<form asp-controller="Tarefa" asp-action="Alterar" method="post">
+    <div class="mb-3">
+        <label for="descricao" class="form-label">Descricao</label>
+        <input type="text" asp-for="descricao" class="form-control" placeholder="Digite a descrição da tarefa">
+        @Html.ValidationMessageFor(x => x.descricao)
+    </div>
+    <div class="mb-3">
+        <label for="data final" class="form-label">DataFinal</label>
+        <input type="datetime" asp-for="DataFinal" class="form-control" placeholder="Digite a data final da tarefa">
+        @Html.ValidationMessageFor(x => x.DataFinal)
+    </div>
+    <div class="form-group">
+        <label for="usuarioid" class="form-label">Usuario Id</label>
+        <input type="text" asp-for="UsuarioId" class="form-control" placeholder="Digite a data final da tarefa">
+        @Html.ValidationMessageFor(x => x.UsuarioId)
+    </div>
+    <div class="form-group">
+        <label for="nome" class="form-label">Status</label>
+        <select asp-for="TarefaEnum" class="form-control">
+            <option value="">Selecione</option>
+            <option value="@TarefaEnum.Pendente">Pendente</option>
+            <option value="@TarefaEnum.Encerrado">Encerrado</option>
+        </select>
+        @Html.ValidationMessageFor(x => x.TarefaEnum)
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Editar</button>
+    <a role="button" class="btn btn-secondary " asp-controller="Tarefa" asp-action="Index">Voltar</a>
+</form>
+

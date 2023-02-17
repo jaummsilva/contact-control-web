@@ -22,7 +22,8 @@ namespace ContatosMVC.Repositorio
             Tarefa tarefaDB = ListarPorId(tarefa.Id);
             
             if (tarefaDB == null) throw new Exception("Houve um erro na atualização do contato");
-            
+
+            tarefaDB.UsuarioId = tarefa.UsuarioId;
             tarefaDB.descricao = tarefa.descricao;
             tarefaDB.TarefaEnum = tarefa.TarefaEnum;
             tarefaDB.DataFinal = tarefa.DataFinal;

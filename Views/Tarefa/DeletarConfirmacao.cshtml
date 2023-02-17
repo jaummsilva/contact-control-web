@@ -1,5 +1,15 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Tarefa
 @{
+    ViewData["Title"] = "Confirmação deletar tarefa";
+    Layout = "_Layout";
 }
+
+<div class="text-center">
+    <h3 class="display-4">Realmente deseja deletar o tarefa do UsuarioId : (@Model.UsuarioId)?</h3><br />
+</div>
+<br />
+
+<a class="btn btn-primary" asp-controller="Tarefa" asp-action="Index" role="button">Cancelar</a>
+<a class="btn btn-danger" asp-route-id="@Model.Id" asp-controller="Tarefa" asp-action="Deletar" role="button">Confirmar</a>
+
+
