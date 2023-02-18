@@ -1,8 +1,11 @@
-﻿using ContatosMVC.Filters;
+﻿using ContatosMVC.Data;
+using ContatosMVC.Filters;
 using ContatosMVC.Helpers;
 using ContatosMVC.Models;
 using ContatosMVC.Repositorio;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ContatosMVC.Controllers
 {
@@ -11,11 +14,15 @@ namespace ContatosMVC.Controllers
     {
         private readonly ISessao _sessao;
         private readonly ITarefaRepositorio _tarefaRepositorio;
+        private readonly BancoContext _bancoContext;
+        private readonly IUsuarioRepositorio _usuarioRepositorio;
 
-        public TarefaController(ITarefaRepositorio tarefaRepositorio, ISessao sessao)
+        public TarefaController(ITarefaRepositorio tarefaRepositorio, ISessao sessao, BancoContext bancoContext, IUsuarioRepositorio usuarioRepositorio)
         {
             _tarefaRepositorio = tarefaRepositorio;
             _sessao = sessao;
+            _bancoContext = bancoContext;
+            _usuarioRepositorio= usuarioRepositorio;
 
         }
         [PaginaRestritaAdmin]
@@ -86,7 +93,7 @@ namespace ContatosMVC.Controllers
                     TempData["MensagemSucesso"] = "Contato alterado com sucesso";
                     return RedirectToAction("Index");
                 }
-                return View("Editar", tarefa);
+                return View("Index", tarefa);
             }
             catch (Exception erro)
             {

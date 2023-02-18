@@ -1,5 +1,6 @@
 ﻿using ContatosMVC.Enums;
 using ContatosMVC.Helpers;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace ContatosMVC.Models
@@ -16,6 +17,6 @@ namespace ContatosMVC.Models
 
         [Required(ErrorMessage = "Digite o id do usuario da tarefa")]
         public int? UsuarioId { get; set; }
-        public Usuario? Usuario { get; set; }
+        public virtual Usuario? Usuario { get; set; }
     }
 }

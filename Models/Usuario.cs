@@ -1,5 +1,6 @@
 ﻿using ContatosMVC.Enums;
 using ContatosMVC.Helpers;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace ContatosMVC.Models
@@ -26,7 +27,7 @@ namespace ContatosMVC.Models
 
         public virtual List<Contato>? Contatos { get; set; }
 
-        public virtual List<Tarefa>? Tarefas { get; set; }
+        public virtual List<Tarefa>? Tarefas { get; set; }  
 
         public bool SenhaValida(string senha)
         {

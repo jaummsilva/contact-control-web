@@ -10,19 +10,21 @@
 </div>
 <br />
 <form asp-controller="Tarefa" asp-action="Alterar" method="post">
+    <input hidden asp-for="Id" />
     <div class="mb-3">
         <label for="descricao" class="form-label">Descricao</label>
         <input type="text" asp-for="descricao" class="form-control" placeholder="Digite a descrição da tarefa">
         @Html.ValidationMessageFor(x => x.descricao)
     </div>
     <div class="mb-3">
-        <label for="data final" class="form-label">DataFinal</label>
-        <input type="datetime" asp-for="DataFinal" class="form-control" placeholder="Digite a data final da tarefa">
+        <label asp-for="DataFinal" class="control-label"></label>
+        <input asp-for="DataFinal" class="form-control" />
+        <span asp-validation-for="DataFinal" class="text-danger"></span>
         @Html.ValidationMessageFor(x => x.DataFinal)
     </div>
-    <div class="form-group">
+    <div class="mb-3">
         <label for="usuarioid" class="form-label">Usuario Id</label>
-        <input type="text" asp-for="UsuarioId" class="form-control" placeholder="Digite a data final da tarefa">
+        <input type="text" asp-for="UsuarioId" class="form-control" placeholder="Digite a descrição da tarefa">
         @Html.ValidationMessageFor(x => x.UsuarioId)
     </div>
     <div class="form-group">
