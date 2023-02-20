@@ -38,6 +38,7 @@
                 <th scope="col">Data de Alteração</th>
                 <th scope ="col">Perfil</th>
                 <th scope="col">Total de Contatos</th>
+                <th scope="col">Total de Tarefas</th>
                 <th></th>
             </tr>
         </thead>
@@ -63,6 +64,7 @@
 
                         <td>@(usuario.Perfil == ContatosMVC.Enums.PerfilEnum.Admin ? "Administrador" : "Padrão")</td>
                         <td><a href="javascript:" usuario-id="@usuario.Id" class="btn btn-success btn-sm btn-total-contatos">@(usuario.Contatos != null && usuario.Contatos.Any() ? usuario.Contatos.Count() : 0) </a></td>
+                        <td><a href="javascript:" usuario-id="@usuario.Id" class="btn btn-success btn-sm btn-total-tarefas">@(usuario.Tarefas != null && usuario.Tarefas.Any() ? usuario.Tarefas.Count() : 0) </a></td>
                         <td>
                             <div class="btn-group" role="group">
                                 <a role="button" asp-route-id="@usuario.Id" asp-controller="Usuario" asp-action="Editar" class="btn btn-primary">Editar</a>
@@ -92,6 +94,21 @@
                 </div>
             <div class="modal-body">
                 <div id="listaContatosUsuario"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modalTarefasUsuario" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Listagem de Tarefas</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+                <div id="listaTarefasUsuario"></div>
             </div>
             </div>
         </div>

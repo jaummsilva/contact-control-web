@@ -49,10 +49,9 @@ namespace ContatosMVC.Repositorio
         public List<Usuario> BuscarTodos()
         {
             return _bancoContext.Usuarios
-                .Include(x => x.Contatos)
+                .Include(x => x.Contatos).Include(x => x.Tarefas)
                 .ToList();
         }
-
         public Usuario ListarPorId(int id)
         {
             return _bancoContext.Usuarios.FirstOrDefault(x => x.Id == id);

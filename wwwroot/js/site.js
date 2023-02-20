@@ -20,6 +20,19 @@ $(document).ready(function () {
             }
         });
     });
+    $('.btn-total-tarefas').click(function () {
+        var usuarioId = $(this).attr('usuario-id');
+
+        $.ajax({
+            type: 'GET',
+            url: '/Usuario/ListarTarefasUsuariosId/' + usuarioId,
+            success: function (result) {
+                $('#listaTarefasUsuario').html(result);
+                $('#modalTarefasUsuario').modal(`show`);
+                getDataTable('#table-tarefas-usuarios')
+            }
+        });
+    });
 });
 
 function getDataTable(id) {

@@ -10,11 +10,14 @@ namespace ContatosMVC.Controllers
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
         private readonly IContatoRepositorio _contatoRepositorio;
+        private readonly ITarefaRepositorio _tarefaRepositorio;
         public UsuarioController(IUsuarioRepositorio usuarioRepositorio
-            , IContatoRepositorio contatoRepositorio)
+            , IContatoRepositorio contatoRepositorio,
+            ITarefaRepositorio tarefaRepositorio)
         {
             _usuarioRepositorio = usuarioRepositorio;
             _contatoRepositorio= contatoRepositorio;
+            _tarefaRepositorio = tarefaRepositorio;
 
         }
         public IActionResult Index()
@@ -36,6 +39,11 @@ namespace ContatosMVC.Controllers
         {
             List<Contato> contatos = _contatoRepositorio.BuscarTodos(id);
             return PartialView("_ContatosUsuario", contatos);
+        }
+        public IActionResult ListarTarefasUsuariosId(int id)
+        {
+            List<Tarefa> tarefas = _tarefaRepositorio.BuscarTodos(id);
+            return PartialView("_TarefasUsuario", tarefas);
         }
 
 
